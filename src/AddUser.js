@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Col, Form, Button } from "react-bootstrap";
 import "./AddUser.css";
+import firebase from "firebase";
+import db from "./firebase";
 
 const AddUser = () => {
   const [name, setName] = useState();
@@ -10,6 +12,31 @@ const AddUser = () => {
   const [city, setCity] = useState();
   const [state, setState] = useState();
   const [country, setCountry] = useState();
+
+  const addUser = (e) => {
+    e.preventDefault();
+
+    db.collection("users").add({
+      user: {
+        name: name,
+        email: email,
+        number: number,
+        address: address,
+        city: city,
+        state: state,
+        country: country,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+    });
+
+    setName("");
+    setEmail("");
+    setNumber("");
+    setAddress("");
+    setCity("");
+    setState("");
+    setCountry("");
+  };
 
   return (
     <div className="adduser">
@@ -101,7 +128,12 @@ const AddUser = () => {
             </Form.Group>
           </Form.Row>
 
-          <Button type="submit" variant="outline-primary">
+          <Button
+            onClick={addUser}
+            // disabled={!user}
+            type="submit"
+            variant="outline-primary"
+          >
             Primary
           </Button>
         </Form>
