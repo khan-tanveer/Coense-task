@@ -101,7 +101,9 @@ const AddUser = () => {
             </Form.Group>
           </Form.Row>
 
-          <Button variant="outline-primary">Primary</Button>
+          <Button type="submit" variant="outline-primary">
+            Primary
+          </Button>
         </Form>
       </div>
     </div>

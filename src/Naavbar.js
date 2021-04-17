@@ -7,7 +7,7 @@ import { LinkContainer } from "react-router-bootstrap";
 const Naavbar = () => {
   return (
     <div>
-      <Navbar className="navbar" activeKey="/" bg="dark" variant="dark">
+      <Navbar className="navbar" activeKey="" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Coense Task</Navbar.Brand>
         <Nav className="ml-auto">
           <LinkContainer to="/">
