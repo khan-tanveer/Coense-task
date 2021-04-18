@@ -26,26 +26,35 @@ const ListUser = () => {
         }))
       );
 
-      console.log(
-        "data",
-        snapshot.docs.map((doc, id) => ({ id: doc.id, data: doc.data() }))
-      );
+      // console.log(
+      //   "data",
+      //   snapshot.docs.map((doc, id) => ({ id: doc.id, data: doc.data() }))
+      // );
     });
   }, []);
-
-  // const handleEdit = (id) => {
-  //   console.log("id of edit page", db.collection("users").doc(id));
-
-  //   history.push({
-  //     pathname: `/edituser/`,
-  //     // datas: db.collection("users").doc(id),
-  //   });
-  // };
 
   return (
     <div className="listuser">
       {datas?.map(({ DataTransfer, id }) => {
         // console.log("showing", DataTransfer?.user?.name);
+
+        const names = DataTransfer?.user?.name;
+        const emails = DataTransfer?.user?.email;
+        const numbers = DataTransfer?.user?.number;
+        // const addresss = DataTransfer?.user?.address;
+        const citys = DataTransfer?.user?.city;
+        const states = DataTransfer?.user?.state;
+        const countrys = DataTransfer?.user?.country;
+        console.log(
+          "query data",
+          names,
+          emails,
+          numbers,
+          // addresss
+          citys,
+          states,
+          countrys
+        );
 
         return (
           <Card
@@ -63,9 +72,13 @@ const ListUser = () => {
               <Card.Title>User Email : {DataTransfer?.user?.email}</Card.Title>
               {/* <Card.Text>Some quick</Card.Text> */}
               <Card.Title>User Phone : {DataTransfer?.user?.number}</Card.Title>
+              {/* <Card.Title>User city : {DataTransfer?.user?.city}</Card.Title> */}
               {/* <Card.Text>Some quick</Card.Text> */}
 
-              <Link to={`/edituser/${id}`}>
+              <Link
+                to={`/edituser/${id}/${names}/${emails}/${numbers}/${citys}/${states}/${countrys}`}
+                // /${addresss}/${citys}/${states}/${countrys}
+              >
                 <TiEdit className="listuser__button" />
               </Link>
 

@@ -7,9 +7,19 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
 const EditUser = ({ props }) => {
+  // const [queryData, setQueryData] = useState([]);
   // const query = useQuery();
 
-  const { id } = useParams();
+  const {
+    id,
+    names,
+    emails,
+    numbers,
+    // addresss,
+    citys,
+    states,
+    countrys,
+  } = useParams();
 
   let history = useHistory();
 
@@ -22,14 +32,20 @@ const EditUser = ({ props }) => {
   const [country, setCountry] = useState();
 
   useEffect(() => {
-    // setName();
+    setName(names);
+    setEmail(emails);
+    setNumber(numbers);
+    // setAddress(addresss);
+    setCity(citys);
+    setState(states);
+    setCountry(countrys);
   }, []);
 
   const updateUser = (e) => {
     e.preventDefault();
 
     db.collection("users")
-      .doc("id")
+      .doc(id)
       .update({
         user: {
           name: name,
@@ -60,7 +76,7 @@ const EditUser = ({ props }) => {
         <Form className="edituser__form">
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>User Name</Form.Label>
+              <Form.Label>User Name {names}</Form.Label>
               <Form.Control
                 value={name}
                 onChange={(e) => setName(e.target.value)}
