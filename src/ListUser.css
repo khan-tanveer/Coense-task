@@ -1,0 +1,15 @@
+.listuser {
+  margin-top: 6rem;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listuser__card {
+  margin: 0.5rem;
+  /* padding: 0.5rem; */
+}
+
+.listuser__button {
+  font-size: 3rem;
+}
