@@ -4,8 +4,10 @@ import "./ListUser.css";
 import { TiEdit } from "react-icons/ti";
 import { MdDelete } from "react-icons/md";
 import db from "./firebase";
+import { useHistory } from "react-router";
 
 const ListUser = () => {
+  let history = useHistory();
   const [datas, setDatas] = useState([]);
   console.log("first dataa araay", datas);
 
@@ -15,12 +17,14 @@ const ListUser = () => {
         "full fetchig",
         snapshot.docs.map((doc) => doc.data())
       );
+
       setDatas(
         snapshot.docs.map((doc, id) => ({
           id: doc.id,
           DataTransfer: doc.data(),
         }))
       );
+
       console.log(
         "data",
         snapshot.docs.map((doc, id) => ({ id: doc.id, data: doc.data() }))
@@ -28,13 +32,17 @@ const ListUser = () => {
     });
   }, []);
 
+  const handleEdit = () => {
+    history.push("/edituser");
+  };
+
   return (
     <div className="listuser">
-      {datas?.map(({ DataTransfer }, i) => {
+      {datas?.map(({ DataTransfer, id }) => {
         console.log("showing", DataTransfer?.user?.name);
         return (
           <Card
-            key={i}
+            key={id}
             className="listuser__card"
             border="primary"
             bg="dark"
@@ -50,8 +58,11 @@ const ListUser = () => {
               <Card.Title>User Phone : {DataTransfer?.user?.number}</Card.Title>
               {/* <Card.Text>Some quick</Card.Text> */}
 
-              <TiEdit className="listuser__button" />
-              <MdDelete className="listuser__button" />
+              <TiEdit onClick={handleEdit} className="listuser__button" />
+              <MdDelete
+                onClick={(e) => db.collection("users").doc(id).delete()}
+                className="listuser__button"
+              />
             </Card.Body>
           </Card>
         );
