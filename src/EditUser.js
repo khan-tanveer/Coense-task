@@ -7,9 +7,6 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
 const EditUser = ({ props }) => {
-  // const [queryData, setQueryData] = useState([]);
-  // const query = useQuery();
-
   const {
     id,
     names,
@@ -72,11 +69,11 @@ const EditUser = ({ props }) => {
   return (
     <div className="edituser">
       <div>
-        <h1>EDIT USER DETAILS{id}</h1>
+        <h1>EDIT USER DETAILS</h1>
         <Form className="edituser__form">
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>User Name {names}</Form.Label>
+              <Form.Label>User Name </Form.Label>
               <Form.Control
                 value={name}
                 onChange={(e) => setName(e.target.value)}
