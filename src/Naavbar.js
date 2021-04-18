@@ -16,9 +16,9 @@ const Naavbar = () => {
           <LinkContainer to="/listuser">
             <Nav.Link>User List</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/edituser">
+          {/* <LinkContainer to="/edituser">
             <Nav.Link>User edit</Nav.Link>
-          </LinkContainer>
+          </LinkContainer> */}
         </Nav>
       </Navbar>
     </div>

@@ -5,9 +5,11 @@ import { TiEdit } from "react-icons/ti";
 import { MdDelete } from "react-icons/md";
 import db from "./firebase";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const ListUser = () => {
   let history = useHistory();
+
   const [datas, setDatas] = useState([]);
 
   useEffect(() => {
@@ -24,22 +26,21 @@ const ListUser = () => {
         }))
       );
 
-      // console.log(
-      //   "data",
-      //   snapshot.docs.map((doc, id) => ({ id: doc.id, data: doc.data() }))
-      // );
+      console.log(
+        "data",
+        snapshot.docs.map((doc, id) => ({ id: doc.id, data: doc.data() }))
+      );
     });
   }, []);
 
-  const handleEdit = (id) => {
-    history.push({
-      pathname: "/edituser",
-      // datas: db.collection("users").doc(id),
-    });
+  // const handleEdit = (id) => {
+  //   console.log("id of edit page", db.collection("users").doc(id));
 
-    // console.log("data one", db.collection("users").doc("id").update());
-    // db.collection("users").doc(id).update();
-  };
+  //   history.push({
+  //     pathname: `/edituser/`,
+  //     // datas: db.collection("users").doc(id),
+  //   });
+  // };
 
   return (
     <div className="listuser">
@@ -64,7 +65,10 @@ const ListUser = () => {
               <Card.Title>User Phone : {DataTransfer?.user?.number}</Card.Title>
               {/* <Card.Text>Some quick</Card.Text> */}
 
-              <TiEdit onClick={handleEdit} className="listuser__button" />
+              <Link to={`/edituser/${id}`}>
+                <TiEdit className="listuser__button" />
+              </Link>
+
               <MdDelete
                 onClick={(e) => db.collection("users").doc(id).delete()}
                 className="listuser__button"

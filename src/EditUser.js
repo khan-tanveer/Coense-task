@@ -4,9 +4,12 @@ import { Col, Form, Button } from "react-bootstrap";
 import firebase from "firebase";
 import db from "./firebase";
 import { useHistory } from "react-router";
+import { useParams } from "react-router-dom";
 
-const EditUser = (props) => {
+const EditUser = ({ props }) => {
   // const query = useQuery();
+
+  const { id } = useParams();
 
   let history = useHistory();
 
@@ -18,7 +21,9 @@ const EditUser = (props) => {
   const [state, setState] = useState();
   const [country, setCountry] = useState();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // setName();
+  }, []);
 
   const updateUser = (e) => {
     e.preventDefault();
@@ -47,10 +52,11 @@ const EditUser = (props) => {
     setCountry("");
     history.push("/listuser");
   };
+
   return (
     <div className="edituser">
       <div>
-        <h1>EDIT USER DETAILS</h1>
+        <h1>EDIT USER DETAILS{id}</h1>
         <Form className="edituser__form">
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
