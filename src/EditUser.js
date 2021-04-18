@@ -141,20 +141,19 @@ const EditUser = ({ props }) => {
                 <option>Maharastra</option>
               </Form.Control>
             </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridZip">
-              <Form.Label>Country</Form.Label>
-              <Form.Control
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                as="select"
-                defaultValue="Choose..."
-              >
-                <option>Choose...</option>
-                <option>India</option>
-              </Form.Control>
-            </Form.Group>
           </Form.Row>
+          <Form.Group as={Col} controlId="formGridZip">
+            <Form.Label>Country</Form.Label>
+            <Form.Control
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              as="select"
+              defaultValue="Choose..."
+            >
+              <option>Choose...</option>
+              <option>India</option>
+            </Form.Control>
+          </Form.Group>
 
           <Button
             onClick={updateUser}
