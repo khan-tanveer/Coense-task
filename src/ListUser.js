@@ -9,14 +9,13 @@ import { useHistory } from "react-router";
 const ListUser = () => {
   let history = useHistory();
   const [datas, setDatas] = useState([]);
-  console.log("first dataa araay", datas);
 
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
-      console.log(
-        "full fetchig",
-        snapshot.docs.map((doc) => doc.data())
-      );
+      // console.log(
+      //   "full fetchig",
+      //   snapshot.docs.map((doc) => doc.data())
+      // );
 
       setDatas(
         snapshot.docs.map((doc, id) => ({
@@ -25,21 +24,28 @@ const ListUser = () => {
         }))
       );
 
-      console.log(
-        "data",
-        snapshot.docs.map((doc, id) => ({ id: doc.id, data: doc.data() }))
-      );
+      // console.log(
+      //   "data",
+      //   snapshot.docs.map((doc, id) => ({ id: doc.id, data: doc.data() }))
+      // );
     });
   }, []);
 
-  const handleEdit = () => {
-    history.push("/edituser");
+  const handleEdit = (id) => {
+    history.push({
+      pathname: "/edituser",
+      // datas: db.collection("users").doc(id),
+    });
+
+    // console.log("data one", db.collection("users").doc("id").update());
+    // db.collection("users").doc(id).update();
   };
 
   return (
     <div className="listuser">
       {datas?.map(({ DataTransfer, id }) => {
-        console.log("showing", DataTransfer?.user?.name);
+        // console.log("showing", DataTransfer?.user?.name);
+
         return (
           <Card
             key={id}
@@ -67,24 +73,6 @@ const ListUser = () => {
           </Card>
         );
       })}
-
-      {/* <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1>
-      <h1>list user</h1> */}
     </div>
   );
 };

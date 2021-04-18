@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EditUser.css";
 import { Col, Form, Button } from "react-bootstrap";
 import firebase from "firebase";
 import db from "./firebase";
+import { useHistory } from "react-router";
 
-const EditUser = () => {
+const EditUser = (props) => {
+  // const query = useQuery();
+
+  let history = useHistory();
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [number, setNumber] = useState();
@@ -13,21 +18,25 @@ const EditUser = () => {
   const [state, setState] = useState();
   const [country, setCountry] = useState();
 
+  useEffect(() => {}, []);
+
   const updateUser = (e) => {
     e.preventDefault();
 
-    db.collection("users").add({
-      user: {
-        name: name,
-        email: email,
-        number: number,
-        address: address,
-        city: city,
-        state: state,
-        country: country,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-    });
+    db.collection("users")
+      .doc("id")
+      .update({
+        user: {
+          name: name,
+          email: email,
+          number: number,
+          address: address,
+          city: city,
+          state: state,
+          country: country,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        },
+      });
 
     setName("");
     setEmail("");
@@ -36,12 +45,13 @@ const EditUser = () => {
     setCity("");
     setState("");
     setCountry("");
+    history.push("/listuser");
   };
   return (
-    <div>
+    <div className="edituser">
       <div>
-        <h1>ADD USER DETAILS</h1>
-        <Form className="adduser__form">
+        <h1>EDIT USER DETAILS</h1>
+        <Form className="edituser__form">
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>User Name</Form.Label>
@@ -133,35 +143,10 @@ const EditUser = () => {
             type="submit"
             variant="outline-primary"
           >
-            Primary
+            Update User
           </Button>
         </Form>
       </div>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
-      <h1>edit user</h1>
     </div>
   );
 };

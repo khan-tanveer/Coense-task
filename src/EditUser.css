@@ -1,4 +1,4 @@
-.adduser {
+.edituser {
   padding: 1rem;
   margin: 1.2rem;
 }
@@ -7,6 +7,6 @@ h1 {
   margin-top: 3rem;
 }
 
-.adduser__form {
+.edituser__form {
   margin: 5px;
 }

@@ -134,7 +134,7 @@ const AddUser = () => {
             type="submit"
             variant="outline-primary"
           >
-            Primary
+            Add User
           </Button>
         </Form>
       </div>
