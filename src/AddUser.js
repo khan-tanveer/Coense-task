@@ -13,7 +13,7 @@ const AddUser = () => {
   const [state, setState] = useState();
   const [country, setCountry] = useState();
 
-  const updateUser = (e) => {
+  const addUser = (e) => {
     e.preventDefault();
 
     db.collection("users").add({
@@ -129,7 +129,7 @@ const AddUser = () => {
           </Form.Row>
 
           <Button
-            onClick={updateUser}
+            onClick={addUser}
             // disabled={!user}
             type="submit"
             variant="outline-primary"

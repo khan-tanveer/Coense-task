@@ -38,23 +38,23 @@ const ListUser = () => {
       {datas?.map(({ DataTransfer, id }) => {
         // console.log("showing", DataTransfer?.user?.name);
 
-        const names = DataTransfer?.user?.name;
-        const emails = DataTransfer?.user?.email;
-        const numbers = DataTransfer?.user?.number;
-        // const addresss = DataTransfer?.user?.address;
-        const citys = DataTransfer?.user?.city;
-        const states = DataTransfer?.user?.state;
-        const countrys = DataTransfer?.user?.country;
-        console.log(
-          "query data",
-          names,
-          emails,
-          numbers,
-          // addresss
-          citys,
-          states,
-          countrys
-        );
+        // const names = DataTransfer?.user?.name;
+        // const emails = DataTransfer?.user?.email;
+        // const numbers = DataTransfer?.user?.number;
+        // // const addresss = DataTransfer?.user?.address;
+        // const citys = DataTransfer?.user?.city;
+        // const states = DataTransfer?.user?.state;
+        // const countrys = DataTransfer?.user?.country;
+        // console.log(
+        //   "query data",
+        //   names,
+        //   emails,
+        //   numbers,
+        //   // addresss
+        //   citys,
+        //   states,
+        //   countrys
+        // );
 
         return (
           <Card

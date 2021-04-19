@@ -7,19 +7,10 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
 const EditUser = ({ props }) => {
-  const [fetchDataOneUser, setFetchDataOneUser] = useState([]);
-  console.log("start one", fetchDataOneUser?.user?.name);
+  // const [fetchDataOneUser, setFetchDataOneUser] = useState([]);
+  // console.log("start one", fetchDataOneUser?.user?.name);
 
-  const {
-    id,
-    // names,
-    // emails,
-    // numbers,
-    // // addresss,
-    // citys,
-    // states,
-    // countrys,
-  } = useParams();
+  const { id } = useParams();
 
   let history = useHistory();
 
@@ -51,33 +42,12 @@ const EditUser = ({ props }) => {
             setState(data.user.state);
             setCountry(data.user.country);
 
-            setFetchDataOneUser(snapshot.data());
+            // setFetchDataOneUser(snapshot.data());
           });
       }
     };
     fetchData();
-  }, []);
-
-  // if(data){}
-
-  // useEffect(() => {
-  // console.log("inuseefect:", data);
-  // setName(data.user.name);
-  // setEmail(fetchDataOneUser?.user?.email);
-  // setNumber(fetchDataOneUser?.user?.number);
-  // setAddress(fetchDataOneUser?.user?.address);
-  // setCity(fetchDataOneUser?.user?.city);
-  // setState(fetchDataOneUser?.user?.state);
-  // setCountry(fetchDataOneUser?.user?.country);
-
-  // setName(fetchDataOneUser?.user?.name);
-  // setEmail(fetchDataOneUser?.user?.email);
-  // setNumber(fetchDataOneUser?.user?.number);
-  // setAddress(fetchDataOneUser?.user?.address);
-  // setCity(fetchDataOneUser?.user?.city);
-  // setState(fetchDataOneUser?.user?.state);
-  // setCountry(fetchDataOneUser?.user?.country);
-  // }, []);
+  }, [id]);
 
   const updateUser = (e) => {
     e.preventDefault();
@@ -196,12 +166,7 @@ const EditUser = ({ props }) => {
             </Form.Control>
           </Form.Group>
 
-          <Button
-            onClick={updateUser}
-            // disabled={!user}
-            type="submit"
-            variant="outline-primary"
-          >
+          <Button onClick={updateUser} type="submit" variant="outline-primary">
             Update User
           </Button>
         </Form>
