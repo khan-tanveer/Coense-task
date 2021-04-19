@@ -8,7 +8,9 @@ const Naavbar = () => {
   return (
     <div>
       <Navbar className="navbar" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Coense Task</Navbar.Brand>
+        <Navbar.Brand className="ml-4" href="/">
+          Coense Task
+        </Navbar.Brand>
         <Nav className="ml-auto">
           <LinkContainer to="/">
             <Nav.Link>User Add</Nav.Link>

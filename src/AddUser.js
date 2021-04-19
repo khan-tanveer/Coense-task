@@ -8,13 +8,13 @@ import { useHistory } from "react-router";
 const AddUser = () => {
   const history = useHistory();
 
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [number, setNumber] = useState();
-  const [address, setAddress] = useState();
-  const [city, setCity] = useState();
-  const [state, setState] = useState();
-  const [country, setCountry] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
 
   const addUser = (e) => {
     e.preventDefault();
@@ -42,17 +42,15 @@ const AddUser = () => {
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         },
       });
+      setName("");
+      setEmail("");
+      setNumber("");
+      setAddress("");
+      setCity("");
+      setState("");
+      setCountry("");
+      history.push("/listuser");
     }
-
-    setName("");
-    setEmail("");
-    setNumber("");
-    setAddress("");
-    setCity("");
-    setState("");
-    setCountry("");
-
-    history.push("/listuser");
   };
 
   return (
