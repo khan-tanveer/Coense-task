@@ -7,15 +7,18 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 
 const EditUser = ({ props }) => {
+  const [fetchDataOneUser, setFetchDataOneUser] = useState([]);
+  console.log("start one", fetchDataOneUser?.user?.name);
+
   const {
     id,
-    names,
-    emails,
-    numbers,
-    // addresss,
-    citys,
-    states,
-    countrys,
+    // names,
+    // emails,
+    // numbers,
+    // // addresss,
+    // citys,
+    // states,
+    // countrys,
   } = useParams();
 
   let history = useHistory();
@@ -28,15 +31,53 @@ const EditUser = ({ props }) => {
   const [state, setState] = useState();
   const [country, setCountry] = useState();
 
+  let data;
   useEffect(() => {
-    setName(names);
-    setEmail(emails);
-    setNumber(numbers);
-    // setAddress(addresss);
-    setCity(citys);
-    setState(states);
-    setCountry(countrys);
+    const fetchData = async () => {
+      if (id) {
+        await db
+          .collection("users")
+          .doc(id)
+          .get()
+          .then((snapshot) => {
+            data = snapshot.data();
+            console.log("testneew:", data);
+            setName(data.user.name);
+
+            setEmail(data.user.email);
+            setNumber(data.user.number);
+            setAddress(data.user.address);
+            setCity(data.user.city);
+            setState(data.user.state);
+            setCountry(data.user.country);
+
+            setFetchDataOneUser(snapshot.data());
+          });
+      }
+    };
+    fetchData();
   }, []);
+
+  // if(data){}
+
+  // useEffect(() => {
+  // console.log("inuseefect:", data);
+  // setName(data.user.name);
+  // setEmail(fetchDataOneUser?.user?.email);
+  // setNumber(fetchDataOneUser?.user?.number);
+  // setAddress(fetchDataOneUser?.user?.address);
+  // setCity(fetchDataOneUser?.user?.city);
+  // setState(fetchDataOneUser?.user?.state);
+  // setCountry(fetchDataOneUser?.user?.country);
+
+  // setName(fetchDataOneUser?.user?.name);
+  // setEmail(fetchDataOneUser?.user?.email);
+  // setNumber(fetchDataOneUser?.user?.number);
+  // setAddress(fetchDataOneUser?.user?.address);
+  // setCity(fetchDataOneUser?.user?.city);
+  // setState(fetchDataOneUser?.user?.state);
+  // setCountry(fetchDataOneUser?.user?.country);
+  // }, []);
 
   const updateUser = (e) => {
     e.preventDefault();

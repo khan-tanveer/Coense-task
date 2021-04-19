@@ -76,7 +76,9 @@ const ListUser = () => {
               {/* <Card.Text>Some quick</Card.Text> */}
 
               <Link
-                to={`/edituser/${id}/${names}/${emails}/${numbers}/${citys}/${states}/${countrys}`}
+                to={`/edituser/${id}`}
+                // /${names}/${emails}/${numbers}/${citys}/${states}/${countrys}
+
                 // /${addresss}/${citys}/${states}/${countrys}
               >
                 <TiEdit className="listuser__button" />

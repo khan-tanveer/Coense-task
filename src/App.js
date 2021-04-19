@@ -17,7 +17,8 @@ function App() {
           <Route exact path="/listuser" component={ListUser} />
           <Route
             exact
-            path="/edituser/:id/:names/:emails/:numbers/:citys/:states/:countrys"
+            path="/edituser/:id"
+            // /:id/:names/:emails/:numbers/:citys/:states/:countrys"
             // /:addresss/:citys/:states/:countrys
             component={EditUser}
           />
