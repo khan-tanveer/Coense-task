@@ -20,13 +20,13 @@ const AddUser = () => {
     e.preventDefault();
 
     if (
-      name == "" ||
-      email == "" ||
-      number == "" ||
-      address == "" ||
-      city == "" ||
-      state == "" ||
-      country == ""
+      name === "" ||
+      email === "" ||
+      number === "" ||
+      address === "" ||
+      city === "" ||
+      state === "" ||
+      country === ""
     ) {
       alert("please add details");
     } else {
