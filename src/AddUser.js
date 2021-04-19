@@ -3,8 +3,11 @@ import { Col, Form, Button } from "react-bootstrap";
 import "./AddUser.css";
 import firebase from "firebase";
 import db from "./firebase";
+import { useHistory } from "react-router";
 
 const AddUser = () => {
+  const history = useHistory();
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [number, setNumber] = useState();
@@ -16,18 +19,30 @@ const AddUser = () => {
   const addUser = (e) => {
     e.preventDefault();
 
-    db.collection("users").add({
-      user: {
-        name: name,
-        email: email,
-        number: number,
-        address: address,
-        city: city,
-        state: state,
-        country: country,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-    });
+    if (
+      name == "" ||
+      email == "" ||
+      number == "" ||
+      address == "" ||
+      city == "" ||
+      state == "" ||
+      country == ""
+    ) {
+      alert("please add details");
+    } else {
+      db.collection("users").add({
+        user: {
+          name: name,
+          email: email,
+          number: number,
+          address: address,
+          city: city,
+          state: state,
+          country: country,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        },
+      });
+    }
 
     setName("");
     setEmail("");
@@ -36,6 +51,8 @@ const AddUser = () => {
     setCity("");
     setState("");
     setCountry("");
+
+    history.push("/listuser");
   };
 
   return (

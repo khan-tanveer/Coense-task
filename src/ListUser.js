@@ -4,12 +4,9 @@ import "./ListUser.css";
 import { TiEdit } from "react-icons/ti";
 import { MdDelete } from "react-icons/md";
 import db from "./firebase";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 const ListUser = () => {
-  let history = useHistory();
-
   const [datas, setDatas] = useState([]);
 
   useEffect(() => {
@@ -36,26 +33,6 @@ const ListUser = () => {
   return (
     <div className="listuser">
       {datas?.map(({ DataTransfer, id }) => {
-        // console.log("showing", DataTransfer?.user?.name);
-
-        // const names = DataTransfer?.user?.name;
-        // const emails = DataTransfer?.user?.email;
-        // const numbers = DataTransfer?.user?.number;
-        // // const addresss = DataTransfer?.user?.address;
-        // const citys = DataTransfer?.user?.city;
-        // const states = DataTransfer?.user?.state;
-        // const countrys = DataTransfer?.user?.country;
-        // console.log(
-        //   "query data",
-        //   names,
-        //   emails,
-        //   numbers,
-        //   // addresss
-        //   citys,
-        //   states,
-        //   countrys
-        // );
-
         return (
           <Card
             key={id}
@@ -63,7 +40,7 @@ const ListUser = () => {
             border="primary"
             bg="dark"
             text="light"
-            style={{ width: "20rem" }}
+            style={{ width: "25rem" }}
           >
             <Card.Header>User</Card.Header>
             <Card.Body>
@@ -72,15 +49,9 @@ const ListUser = () => {
               <Card.Title>User Email : {DataTransfer?.user?.email}</Card.Title>
               {/* <Card.Text>Some quick</Card.Text> */}
               <Card.Title>User Phone : {DataTransfer?.user?.number}</Card.Title>
-              {/* <Card.Title>User city : {DataTransfer?.user?.city}</Card.Title> */}
               {/* <Card.Text>Some quick</Card.Text> */}
 
-              <Link
-                to={`/edituser/${id}`}
-                // /${names}/${emails}/${numbers}/${citys}/${states}/${countrys}
-
-                // /${addresss}/${citys}/${states}/${countrys}
-              >
+              <Link to={`/edituser/${id}`}>
                 <TiEdit className="listuser__button" />
               </Link>
 

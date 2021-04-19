@@ -5,10 +5,21 @@ import firebase from "firebase";
 import db from "./firebase";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const EditUser = ({ props }) => {
   // const [fetchDataOneUser, setFetchDataOneUser] = useState([]);
   // console.log("start one", fetchDataOneUser?.user?.name);
+
+  let [loading, setLoading] = useState(false);
+  let [color, setColor] = useState("#ffffff");
 
   const { id } = useParams();
 
@@ -25,6 +36,7 @@ const EditUser = ({ props }) => {
   let data;
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(!loading);
       if (id) {
         await db
           .collection("users")
@@ -32,9 +44,8 @@ const EditUser = ({ props }) => {
           .get()
           .then((snapshot) => {
             data = snapshot.data();
-            console.log("testneew:", data);
+            // console.log("testneew:", data);
             setName(data.user.name);
-
             setEmail(data.user.email);
             setNumber(data.user.number);
             setAddress(data.user.address);
@@ -47,6 +58,7 @@ const EditUser = ({ props }) => {
       }
     };
     fetchData();
+    setLoading(loading);
   }, [id]);
 
   const updateUser = (e) => {
@@ -81,6 +93,7 @@ const EditUser = ({ props }) => {
     <div className="edituser">
       <div>
         <h1>EDIT USER DETAILS</h1>
+        <ClipLoader color={color} loading={loading} css={override} size={100} />
         <Form className="edituser__form">
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
